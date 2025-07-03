@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Snacks</h2>
+
+<div class="products">
+    {% for item in items %}
+    <div class="product">
+        <img src="{{ url_for('static', filename='images/' ~ item.img) }}" alt="{{ item.name }}">
+        <h3>{{ item.name }}</h3>
+        <p>₹{{ item.price }}</p>
+        <form method="POST" action="{{ url_for('add_to_cart') }}">
+            <input type="hidden" name="name" value="{{ item.name }}">
+            <input type="hidden" name="price" value="{{ item.price }}">
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
